@@ -1,7 +1,7 @@
 {
   "schema": "ai_phone_share_index",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-07T09:26:36.526Z",
+  "generatedAt": "2026-09-07T17:41:00.869Z",
   "folders": [
     {
       "name": "A 重要须知（自部署版请查看）",
@@ -78,10 +78,6 @@
     {
       "name": "表情包",
       "count": 6
-    },
-    {
-      "name": "预设",
-      "count": 1
     }
   ],
   "entries": [
@@ -4983,20 +4979,6 @@
       "avatar": "资源/表情包/萌（丑）猫合集/.avatar.png",
       "ownerHash": "b1fb6e5837d789bce23afa8d55d136b02a8653a05245d2980a3c323e300b1042",
       "updatedAt": "2026-09-04T13:37:46+08:00"
-    },
-    {
-      "folder": "预设",
-      "name": "https://github.com/xiaolongbao0709/ai-virtual-phone.git",
-      "dirName": "httpsgithub.comxiaolongbao0709ai-virtual-phone.git",
-      "type": "dir",
-      "path": "资源/预设/httpsgithub.comxiaolongbao0709ai-virtual-phone.git",
-      "files": [],
-      "images": [],
-      "description": "",
-      "author": "",
-      "avatar": "",
-      "ownerHash": "b1fb6e5837d789bce23afa8d55d136b02a8653a05245d2980a3c323e300b1042",
-      "updatedAt": "2026-09-04T14:40:29+08:00"
     }
   ]
 }
