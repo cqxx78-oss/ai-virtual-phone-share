@@ -1,5 +1,6 @@
 主要是为了paro和if包的饺子。
 【9.08更新】
+·美化忘开急救的用rescue
 ·修改了一些bug
 ·美化蓝色snowpage｜白色renderglass
 ·新增记忆线 可调用api生成or去其他ai app总结后手动添加并关联互动条 未总结记忆情况下默认读50条互动记录
