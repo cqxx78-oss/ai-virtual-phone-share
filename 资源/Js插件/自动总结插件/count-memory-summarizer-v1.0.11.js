@@ -3,7 +3,7 @@ export default {
     id: "count-memory-summarizer",
     name: "按条数记忆总结",
     apiVersion: 1,
-    version: "1.0.7",
+    version: "1.0.11",
     author: "Cyrus",
     description: "只换触发：够条数就调用宿主原版长期记忆流水线（辅助API、时间线、embedding、核心记忆）。",
     permissions: ["chat.read", "storage"],
@@ -309,57 +309,12 @@ export default {
       }
     });
 
-    const renderBar = (el, sessionId) => {
-      const session = sessionId ? ctx.data.sessions.get(sessionId) : null;
-      const characterId = session && !session.isGroup ? session.contactId : "";
-      el.innerHTML = "";
-      if (!characterId) return;
-
-      const state = loadState();
-      const slot = charState(state, characterId);
-      const limit = intervalOf();
-      const wrap = document.createElement("div");
-      wrap.className = "cms-bar";
-
-      const label = document.createElement("span");
-      label.textContent = "记忆 " + slot.pending.length + "/" + limit;
-      wrap.appendChild(label);
-
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.textContent = slot.pending.length ? "立即总结" : "暂无新消息";
-      btn.disabled = slot.pending.length === 0 || busy.has(characterId);
-      btn.addEventListener("click", () => {
-        void flush(characterId, true);
-      });
-      wrap.appendChild(btn);
-
-      if (slot.lastError) {
-        const err = document.createElement("span");
-        err.className = "cms-err";
-        err.textContent = slot.lastError;
-        wrap.appendChild(err);
-      }
-      el.appendChild(wrap);
-    };
-
     ctx.ui.injectCSS(`
-      .cms-bar{display:flex;align-items:center;gap:8px;padding:2px 12px 6px;font-size:11px;opacity:.8;flex-wrap:wrap}
-      .cms-bar button{border:0;border-radius:999px;padding:2px 8px;font-size:11px;background:rgba(127,127,127,.18);color:inherit;cursor:pointer}
-      .cms-bar button:disabled{opacity:.4;cursor:default}
-      .cms-err{color:#c45;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
       .cms-settings{padding:8px 4px 12px;font-size:13px;line-height:1.5}
       .cms-settings p{margin:0 0 8px;opacity:.75}
       .cms-settings button{margin-top:8px;border:0;border-radius:8px;padding:6px 10px;font-size:12px;background:rgba(127,127,127,.18);color:inherit}
       .cms-row{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px solid rgba(127,127,127,.12)}
     `);
-
-    ctx.ui.slot("chat.header", (el, props) => {
-      const redraw = () => renderBar(el, props.sessionId);
-      redraw();
-      const off = ctx.system.bus.on("count-memory-summarizer:changed", redraw);
-      return () => off();
-    });
 
     ctx.ui.slot("settings.section", (el) => {
       const redraw = () => {
