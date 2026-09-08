@@ -1,7 +1,7 @@
 {
   "schema": "ai_phone_share_index",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-08T12:13:10.753Z",
+  "generatedAt": "2026-09-08T12:41:18.292Z",
   "folders": [
     {
       "name": "A 重要须知（自部署版请查看）",
@@ -1704,14 +1704,15 @@
       "type": "dir",
       "path": "资源/应用/Quiet Forest",
       "files": [
-        "资源/应用/Quiet Forest/quiet.forest-2.1.0.zip"
+        "资源/应用/Quiet Forest/quiet.forest-2.1.0.zip",
+        "资源/应用/Quiet Forest/quiet.forest-2.2.0.zip"
       ],
       "images": [],
-      "description": "功能太多了编辑了好几遍都放不下🥺功能介绍见小红书，如果发现有bug或有什么建议、想加的功能等都欢迎宝宝们随时来小红书联系我。\n我的小红书号：63811844669",
+      "description": "[粗][红]更新2.0版本啦[/红][/粗]\n具体更新内容见小红书功能太多了编辑了好几遍都放不下🥺功能介绍见小红书，如果发现有bug或有什么建议、想加的功能等都欢迎宝宝们随时来小红书联系我。\n我的小红书号：63811844669",
       "author": "薄雾林_",
       "avatar": "资源/应用/Quiet Forest/.avatar.png",
       "ownerHash": "4dde8cb2d0fae27998a1b55be02a915fdcbc60b830abe1b440ea0880fd3bee32",
-      "updatedAt": "2026-08-31T17:12:49+08:00"
+      "updatedAt": "2026-09-08T20:40:37+08:00"
     },
     {
       "folder": "应用",
