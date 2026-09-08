@@ -1,0 +1,701 @@
+/*
+  临境 · 雪页阅读器 / SNOWPAGE READER 1.4
+  适配 Limen / 临境 v1.1.23
+
+  使用：美化当前互动 → 导入文件 → 预览 → 保存
+  纯 CSS，不会修改正文、提示词、角色资料或记忆。
+
+  ===== 最常改的位置 =====
+  背景图（用户提供）：
+  https://i.postimg.cc/fyFDMdVB/IMG-7530.jpg
+  想换图时，只替换下方 --snowpage-bg-url 中的网址。
+
+  1.4：移除小团子图片；输入框失焦时只留下底部一根细线，点击后展开。
+  1.3：隐藏侧边栏与美化入口。
+  1.2：移除世界线大标题、场景资料与装饰英文，给封面拼贴留出完整呼吸区。
+  同时隐藏消息作者与时间，只保留每条消息的“…”操作入口。
+  这份样式保留：侧边栏、美化按钮、消息菜单与发送按钮。
+  收起：角色选择，以及字号、世界书、记忆、导演台四枚正文上方工具按钮。
+  如需恢复它们，删除文末“收起低频工具”那一段即可。
+*/
+
+:root {
+  color-scheme: light;
+  --snowpage-bg-url: url("https://i.postimg.cc/fyFDMdVB/IMG-7530.jpg"); /* ← 背景图链接，方便二改 */
+  --snowpage-ink: #4a4a49;
+  --snowpage-title: #313130;
+  --snowpage-muted: #858582;
+  --snowpage-line: rgba(76, 76, 73, .13);
+  --snowpage-paper: rgba(252, 252, 250, .84);
+  --snowpage-paper-solid: #f8f8f5;
+  --snowpage-glass: rgba(250, 250, 248, .68);
+  --snowpage-soft: rgba(228, 228, 224, .64);
+  --snowpage-shadow: 0 18px 52px rgba(47, 47, 44, .10);
+  --dialogue-ink: #353536;
+  --dialogue-bg: rgba(205, 205, 207, .44);
+  --dialogue-weight: 600;
+  --dialogue-radius: 3px;
+}
+
+html[data-limen-theme="dark"] {
+  color-scheme: dark;
+  --snowpage-ink: #d6d6d2;
+  --snowpage-title: #f0f0ec;
+  --snowpage-muted: #a1a19c;
+  --snowpage-line: rgba(238, 238, 232, .13);
+  --snowpage-paper: rgba(24, 24, 23, .86);
+  --snowpage-paper-solid: #1d1d1c;
+  --snowpage-glass: rgba(25, 25, 24, .72);
+  --snowpage-soft: rgba(73, 73, 70, .54);
+  --snowpage-shadow: 0 20px 60px rgba(0, 0, 0, .28);
+  --dialogue-ink: #f1f1ee;
+  --dialogue-bg: rgba(102, 102, 105, .54);
+}
+
+html,
+body,
+.app-shell,
+.main {
+  background: #e9e9e6 !important;
+  color: var(--snowpage-ink) !important;
+}
+
+html[data-limen-theme="dark"],
+html[data-limen-theme="dark"] body,
+html[data-limen-theme="dark"] .app-shell,
+html[data-limen-theme="dark"] .main {
+  background: #111110 !important;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 背景成为固定书封，正文滚动时它不跟着跑。 */
+.main::before {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(250,250,248,.16), rgba(245,245,242,.34)),
+    var(--snowpage-bg-url) center / cover no-repeat;
+  filter: grayscale(.22) saturate(.72) brightness(1.02) contrast(.90);
+  transform: translateZ(0);
+}
+
+html[data-limen-theme="dark"] .main::before {
+  background:
+    linear-gradient(180deg, rgba(8,8,8,.48), rgba(10,10,9,.66)),
+    var(--snowpage-bg-url) center / cover no-repeat;
+  filter: grayscale(1) saturate(.12) brightness(.48) contrast(.92);
+}
+
+.main > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 顶部只留下两个必要入口，不再显示标题资料带。 */
+.main {
+  padding-top: 0 !important;
+}
+
+.topbar {
+  left: 17px !important;
+  right: var(--bar-clear-right) !important;
+  top: calc(var(--bar-top) + 2px) !important;
+  width: auto !important;
+  min-height: 46px !important;
+  height: 46px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 8px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  pointer-events: none !important;
+}
+
+.topbar-copy,
+.topbar::after,
+.scene-strip {
+  display: none !important;
+}
+
+#drawerOpen,
+#beautyOpen {
+  pointer-events: auto !important;
+}
+
+.topbar .icon-button {
+  width: 46px !important;
+  height: 46px !important;
+  min-height: 46px !important;
+  flex: 0 0 46px !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: rgba(247,247,244,.24) !important;
+  color: var(--snowpage-ink) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+html[data-limen-theme="dark"] .topbar .icon-button {
+  background: rgba(20,20,19,.18) !important;
+}
+
+html[data-limen-theme="dark"] .topbar {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.topbar .svg-icon {
+  width: 19px !important;
+  height: 19px !important;
+  stroke-width: 1.55 !important;
+}
+
+.beauty-button {
+  margin-left: auto !important;
+}
+
+.people-count {
+  right: -2px !important;
+  bottom: -2px !important;
+  min-width: 17px !important;
+  height: 17px !important;
+  border: 2px solid var(--snowpage-paper-solid) !important;
+  border-radius: 9px !important;
+  background: #5f5f5d !important;
+  color: #fff !important;
+  font-size: 9px !important;
+}
+
+/* 上方留给背景拼贴；正文从图案下方直接开始。 */
+.timeline {
+  padding: clamp(230px, 31vh, 320px) 17px 34px !important;
+  background: transparent !important;
+  scroll-behavior: smooth;
+}
+
+.turn {
+  max-width: 720px !important;
+}
+
+.user-turn {
+  position: relative !important;
+  width: min(86%, 580px) !important;
+  margin: 0 7px 22px auto !important;
+  padding: 14px 4px 12px 14px !important;
+  border: 0 !important;
+  border-left: 1px solid rgba(79,79,78,.26) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.user-turn .turn-content {
+  color: var(--snowpage-ink) !important;
+  font-size: 13px !important;
+  line-height: 1.82 !important;
+  letter-spacing: .015em;
+  text-shadow: 0 1px 0 rgba(255,255,255,.90), 0 0 11px rgba(255,255,255,.72);
+}
+
+.assistant-turn {
+  position: relative !important;
+  margin: 0 auto 32px !important;
+  padding: 18px clamp(17px, 6vw, 46px) 27px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html[data-limen-theme="dark"] .assistant-turn,
+html[data-limen-theme="dark"] .user-turn {
+  background: transparent !important;
+}
+
+html[data-limen-theme="dark"] #mainView .assistant-turn,
+html[data-limen-theme="dark"] #mainView .user-turn {
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-limen-theme="dark"] #mainView .user-turn {
+  border: 0 !important;
+  border-left: 1px solid rgba(235,235,230,.20) !important;
+}
+
+html[data-limen-theme="dark"] #mainView .turn-content {
+  color: var(--snowpage-ink) !important;
+}
+
+html[data-limen-theme="dark"] #mainView .assistant-turn .turn-author {
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--snowpage-title) !important;
+}
+
+html[data-limen-theme="dark"] #mainView .timeline {
+  background: transparent !important;
+}
+
+.turn-head {
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.turn-author,
+.turn-time {
+  display: none !important;
+}
+
+.turn-menu {
+  position: absolute !important;
+  z-index: 2 !important;
+  top: -7px !important;
+  right: 1px !important;
+  width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  flex-basis: 36px !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--snowpage-muted) !important;
+}
+
+.assistant-turn .turn-content {
+  padding-top: 7px !important;
+  color: var(--snowpage-ink) !important;
+  font-family: "LimenFlyFlowerRuntime", "Songti SC", "STSong", "Noto Serif CJK SC", Georgia, serif !important;
+  font-size: inherit !important;
+  font-weight: 400 !important;
+  line-height: 2.12 !important;
+  letter-spacing: .035em !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.96), 0 0 12px rgba(255,255,255,.80), 0 0 24px rgba(255,255,255,.52);
+}
+
+html[data-limen-theme="dark"] .topbar-title,
+html[data-limen-theme="dark"] .user-turn .turn-content,
+html[data-limen-theme="dark"] .assistant-turn .turn-content {
+  text-shadow: 0 1px 1px rgba(0,0,0,.82), 0 0 13px rgba(0,0,0,.66);
+}
+
+.assistant-turn .turn-content p {
+  margin: 0 0 1.28em !important;
+  text-indent: 2em !important;
+}
+
+.assistant-turn .turn-content p.dialogue-first,
+.assistant-turn .turn-content p.no-indent {
+  text-indent: 0 !important;
+}
+
+.assistant-turn .turn-content p:last-child {
+  margin-bottom: .2em !important;
+}
+
+/* 句中对白像铅笔在书页上轻轻标出，而不是整块荧光笔。 */
+.turn-content .dialogue-quote {
+  color: var(--dialogue-ink) !important;
+  padding: .04em .10em .06em !important;
+  border-radius: var(--dialogue-radius) !important;
+  background: var(--dialogue-bg) !important;
+  box-shadow: inset 0 -1px 0 rgba(80,80,84,.18) !important;
+  font-weight: var(--dialogue-weight) !important;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.empty-scene,
+.waiting-turn,
+.generation-notice {
+  border: 1px solid rgba(255,255,255,.66) !important;
+  border-radius: 26px !important;
+  background: var(--snowpage-paper) !important;
+  box-shadow: var(--snowpage-shadow) !important;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.empty-scene {
+  padding: 26px 25px !important;
+}
+
+.waiting-turn {
+  padding: 16px 18px 17px !important;
+  color: var(--snowpage-muted) !important;
+}
+
+.waiting-line {
+  font-family: Georgia, "Songti SC", serif !important;
+}
+
+.waiting-dots i {
+  background: var(--snowpage-muted) !important;
+}
+
+.waiting-stop,
+.generation-notice button {
+  min-height: 40px !important;
+  border: 1px solid var(--snowpage-line) !important;
+  border-radius: 13px !important;
+  background: rgba(255,255,255,.30) !important;
+  color: var(--snowpage-ink) !important;
+}
+
+.generation-state {
+  display: table !important;
+  margin: 14px auto 0 !important;
+  padding: 5px 10px !important;
+  border: 1px solid var(--snowpage-line) !important;
+  border-radius: 999px !important;
+  background: var(--snowpage-soft) !important;
+  color: var(--snowpage-muted) !important;
+  font-size: 9px !important;
+  letter-spacing: .05em;
+}
+
+/* 底部输入像夹在书中的窄纸条。 */
+.composer {
+  width: calc(100% - 32px) !important;
+  margin: 0 16px 11px !important;
+  padding: 7px 7px calc(7px + var(--safe-bottom)) !important;
+  gap: 7px !important;
+  border: 1px solid rgba(255,255,255,.74) !important;
+  border-radius: 24px !important;
+  background: var(--snowpage-glass) !important;
+  box-shadow: var(--snowpage-shadow), inset 0 1px 0 rgba(255,255,255,.58) !important;
+  backdrop-filter: blur(24px) saturate(112%);
+  -webkit-backdrop-filter: blur(24px) saturate(112%);
+}
+
+html[data-limen-theme="dark"] #mainView .composer,
+html[data-limen-theme="dark"] #mainView .composer-box {
+  border-color: rgba(255,255,255,.12) !important;
+  background: var(--snowpage-glass) !important;
+  box-shadow: var(--snowpage-shadow), inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+
+.composer-box {
+  border: 0 !important;
+  border-radius: 18px !important;
+  background: transparent !important;
+}
+
+.composer textarea {
+  min-height: 44px !important;
+  padding: 11px 12px !important;
+  background: transparent !important;
+  color: var(--snowpage-ink) !important;
+  caret-color: var(--snowpage-title) !important;
+  font: 15px/1.55 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif !important;
+}
+
+.composer textarea::placeholder {
+  color: var(--snowpage-muted) !important;
+  font-size: 12px !important;
+  letter-spacing: .015em;
+}
+
+.send-button {
+  width: 46px !important;
+  height: 46px !important;
+  min-height: 46px !important;
+  flex: 0 0 46px !important;
+  border: 1px solid #5f5f60 !important;
+  border-radius: 17px !important;
+  background: #5c5c5e !important;
+  color: #f7f7f5 !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.19) !important;
+}
+
+.send-button.is-unready,
+.send-button:disabled {
+  border-color: var(--snowpage-line) !important;
+  background: var(--snowpage-soft) !important;
+  color: var(--snowpage-muted) !important;
+  box-shadow: none !important;
+}
+
+/* 侧栏和弹窗也延续纸与玻璃，不留下原生白块。 */
+.drawer,
+.sheet,
+.sheet-head,
+.sheet-body,
+.sheet-actions,
+.dialog {
+  background: var(--snowpage-paper-solid) !important;
+  color: var(--snowpage-ink) !important;
+}
+
+.drawer,
+.sheet,
+.dialog {
+  border-color: var(--snowpage-line) !important;
+}
+
+.sheet {
+  border-radius: 30px 30px 0 0 !important;
+}
+
+.sheet-title,
+.drawer-title,
+.dialog-title,
+.field-label,
+.section-title {
+  color: var(--snowpage-title) !important;
+}
+
+.sheet-title,
+.drawer-title {
+  font-family: Georgia, "Songti SC", serif !important;
+  letter-spacing: .06em !important;
+}
+
+.inline-note,
+.action-row,
+.choice-row,
+.override-card,
+.book-row,
+.narration-option,
+.director-message,
+.director-rule,
+.beauty-folder,
+.beauty-card,
+.memory-node,
+.memory-raw-window {
+  border-color: var(--snowpage-line) !important;
+  background: rgba(255,255,255,.28) !important;
+  color: var(--snowpage-ink) !important;
+}
+
+html[data-limen-theme="dark"] .inline-note,
+html[data-limen-theme="dark"] .action-row,
+html[data-limen-theme="dark"] .choice-row,
+html[data-limen-theme="dark"] .override-card,
+html[data-limen-theme="dark"] .book-row,
+html[data-limen-theme="dark"] .narration-option,
+html[data-limen-theme="dark"] .director-message,
+html[data-limen-theme="dark"] .director-rule,
+html[data-limen-theme="dark"] .beauty-folder,
+html[data-limen-theme="dark"] .beauty-card,
+html[data-limen-theme="dark"] .memory-node,
+html[data-limen-theme="dark"] .memory-raw-window {
+  background: rgba(255,255,255,.045) !important;
+}
+
+.text-input,
+.text-area,
+.code-area,
+select {
+  border-color: var(--snowpage-line) !important;
+  border-radius: 15px !important;
+  background: rgba(255,255,255,.30) !important;
+  color: var(--snowpage-ink) !important;
+}
+
+html[data-limen-theme="dark"] .text-input,
+html[data-limen-theme="dark"] .text-area,
+html[data-limen-theme="dark"] .code-area,
+html[data-limen-theme="dark"] select {
+  background: rgba(255,255,255,.05) !important;
+}
+
+.segment.is-selected,
+.choice-row.is-selected,
+.narration-option.is-selected {
+  background: var(--snowpage-soft) !important;
+  color: var(--snowpage-title) !important;
+}
+
+.sheet-actions .primary,
+.dialog-actions .primary,
+.director-remember {
+  border-color: #5e5e5d !important;
+  background: #5e5e5d !important;
+  color: #fff !important;
+}
+
+.toast {
+  border: 1px solid rgba(255,255,255,.22) !important;
+  border-radius: 14px !important;
+  background: rgba(54,54,53,.93) !important;
+  color: #fff !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* 纯阅读模式：收起低频工具、侧边栏与美化入口。 */
+.scene-tools,
+.people-button,
+#drawerOpen,
+#beautyOpen,
+.beauty-button {
+  display: none !important;
+}
+
+/*
+  输入框默认折叠成一根细线。细线周围仍保留足够的可点击区域；
+  textarea 获得焦点后恢复完整输入栏，点回正文则再次收起。
+*/
+.composer {
+  transition: width .24s ease, height .24s ease, margin .24s ease,
+              padding .24s ease, background-color .24s ease !important;
+}
+
+.composer::before {
+  content: "";
+  display: none;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  width: 54px;
+  height: 2px;
+  pointer-events: none;
+  border-radius: 999px;
+  background: rgba(74, 74, 73, .46);
+  box-shadow: 0 1px 0 rgba(255,255,255,.42);
+  transform: translate(-50%, -50%);
+}
+
+#mainView .composer:not(:focus-within) {
+  position: relative !important;
+  width: 104px !important;
+  min-height: 32px !important;
+  height: 32px !important;
+  margin: 0 auto calc(8px + var(--safe-bottom)) !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+#mainView .composer:not(:focus-within)::before {
+  display: block !important;
+}
+
+#mainView .composer:not(:focus-within) .composer-box {
+  position: absolute !important;
+  z-index: 2 !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+  background: transparent !important;
+}
+
+#mainView .composer:not(:focus-within) textarea {
+  width: 100% !important;
+  min-height: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  color: transparent !important;
+  caret-color: transparent !important;
+  cursor: pointer !important;
+}
+
+#mainView .composer:not(:focus-within) .send-button {
+  display: none !important;
+}
+
+#mainView .composer:focus-within {
+  width: calc(100% - 32px) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 16px 11px !important;
+}
+
+#mainView .composer:focus-within .composer-box {
+  position: relative !important;
+  inset: auto !important;
+  opacity: 1 !important;
+}
+
+#mainView .composer:focus-within .send-button {
+  display: flex !important;
+}
+
+html[data-limen-theme="dark"] #mainView .composer:not(:focus-within),
+html[data-limen-theme="dark"] #mainView .composer:not(:focus-within) .composer-box {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-limen-theme="dark"] #mainView .composer:not(:focus-within)::before {
+  background: rgba(232, 232, 228, .42) !important;
+  box-shadow: 0 1px 0 rgba(0,0,0,.38) !important;
+}
+
+/* 当前主题保留了美化按钮，所以不再额外浮出大号“恢复原界面”。 */
+#beautyRescueHost {
+  display: none !important;
+}
+
+/* 小屏再收一点边距，避免纸页挤成细长一条。 */
+@media (max-width: 380px) {
+  .topbar {
+    left: 12px !important;
+  }
+
+  .topbar .icon-button {
+    width: 43px !important;
+    height: 43px !important;
+    min-height: 43px !important;
+    flex-basis: 43px !important;
+  }
+
+  .assistant-turn {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+
+  .timeline {
+    padding-top: clamp(200px, 28vh, 270px) !important;
+  }
+}
+
+@media (min-width: 760px) {
+  .composer {
+    max-width: 760px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .timeline {
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}
