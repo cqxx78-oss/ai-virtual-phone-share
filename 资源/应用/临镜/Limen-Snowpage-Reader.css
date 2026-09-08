@@ -1,5 +1,5 @@
 /*
-  临境 · 雪页阅读器 / SNOWPAGE READER 1.4
+  临境 · 雪页阅读器 / SNOWPAGE READER 1.5
   适配 Limen / 临境 v1.1.23
 
   使用：美化当前互动 → 导入文件 → 预览 → 保存
@@ -10,12 +10,13 @@
   https://i.postimg.cc/fyFDMdVB/IMG-7530.jpg
   想换图时，只替换下方 --snowpage-bg-url 中的网址。
 
+  1.5：等待状态去卡片化，改成浮在背景上的一行状态与小型停止按钮。
   1.4：移除小团子图片；输入框失焦时只留下底部一根细线，点击后展开。
   1.3：隐藏侧边栏与美化入口。
   1.2：移除世界线大标题、场景资料与装饰英文，给封面拼贴留出完整呼吸区。
   同时隐藏消息作者与时间，只保留每条消息的“…”操作入口。
-  这份样式保留：侧边栏、美化按钮、消息菜单与发送按钮。
-  收起：角色选择，以及字号、世界书、记忆、导演台四枚正文上方工具按钮。
+  这份样式只保留消息菜单、展开后的输入框与发送按钮。
+  收起：侧边栏、美化、角色选择，以及字号、世界书、记忆、导演台工具按钮。
   如需恢复它们，删除文末“收起低频工具”那一段即可。
 */
 
@@ -326,7 +327,6 @@ html[data-limen-theme="dark"] .assistant-turn .turn-content {
 }
 
 .empty-scene,
-.waiting-turn,
 .generation-notice {
   border: 1px solid rgba(255,255,255,.66) !important;
   border-radius: 26px !important;
@@ -341,25 +341,60 @@ html[data-limen-theme="dark"] .assistant-turn .turn-content {
 }
 
 .waiting-turn {
-  padding: 16px 18px 17px !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 720px !important;
+  min-height: 32px !important;
+  margin: 4px auto 25px !important;
+  padding: 2px clamp(8px, 4vw, 24px) !important;
+  gap: 10px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   color: var(--snowpage-muted) !important;
 }
 
 .waiting-line {
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
   font-family: Georgia, "Songti SC", serif !important;
+  font-size: 11px !important;
+  letter-spacing: .035em !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.86), 0 0 9px rgba(255,255,255,.62);
 }
 
 .waiting-dots i {
   background: var(--snowpage-muted) !important;
 }
 
-.waiting-stop,
+.waiting-stop {
+  flex: 0 0 auto !important;
+  min-height: 27px !important;
+  margin: 0 !important;
+  padding: 0 8px !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(78,78,76,.25) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--snowpage-muted) !important;
+  font-size: 10px !important;
+  box-shadow: none !important;
+}
+
 .generation-notice button {
   min-height: 40px !important;
   border: 1px solid var(--snowpage-line) !important;
   border-radius: 13px !important;
   background: rgba(255,255,255,.30) !important;
   color: var(--snowpage-ink) !important;
+}
+
+html[data-limen-theme="dark"] .waiting-line {
+  text-shadow: 0 1px 1px rgba(0,0,0,.80), 0 0 9px rgba(0,0,0,.58) !important;
 }
 
 .generation-state {
