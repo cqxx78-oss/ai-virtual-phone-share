@@ -1,7 +1,7 @@
 {
   "schema": "ai_phone_share_index",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-08T01:41:39.690Z",
+  "generatedAt": "2026-09-08T02:58:40.156Z",
   "folders": [
     {
       "name": "A 重要须知（自部署版请查看）",
@@ -65,7 +65,7 @@
     },
     {
       "name": "线上美化",
-      "count": 37
+      "count": 38
     },
     {
       "name": "线上聊天状态栏",
@@ -4419,6 +4419,25 @@
       "avatar": "资源/线上美化/立体蓝/.avatar.png",
       "ownerHash": "bf65bc1c732341505dc056c65d6ad17b6862e2c1f0cdf99f70af36a873b438aa",
       "updatedAt": "2026-08-13T15:56:45+08:00"
+    },
+    {
+      "folder": "线上美化",
+      "name": "简线粉黄",
+      "dirName": "简线粉黄",
+      "type": "dir",
+      "path": "资源/线上美化/简线粉黄",
+      "files": [
+        "资源/线上美化/简线粉黄/float【简线粉黄】.docx"
+      ],
+      "images": [
+        "资源/线上美化/简线粉黄/1000075752.jpg",
+        "资源/线上美化/简线粉黄/1000075753.jpg"
+      ],
+      "description": "把link的美化搬过来了~，没有做卡片样式，顶栏的返回和更多可能要往下按一点",
+      "author": "kk7",
+      "avatar": "",
+      "ownerHash": "5b044cc95c402dab03ba924c436888aee5db4a1915c87912eb73dff2bf8c513e",
+      "updatedAt": "2026-09-08T10:57:56+08:00"
     },
     {
       "folder": "线上美化",
