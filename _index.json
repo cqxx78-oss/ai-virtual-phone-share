@@ -1,7 +1,7 @@
 {
   "schema": "ai_phone_share_index",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-08T06:39:16.903Z",
+  "generatedAt": "2026-09-08T06:40:02.404Z",
   "folders": [
     {
       "name": "A 重要须知（自部署版请查看）",
@@ -9,7 +9,7 @@
     },
     {
       "name": "Js插件",
-      "count": 38
+      "count": 39
     },
     {
       "name": "bug反馈专用，请先询问小坊，无法解决后再进行反馈，反馈最好有详细情境、附图，否则无法复现",
@@ -522,6 +522,24 @@
       "avatar": "资源/Js插件/消息emoji回应/.avatar.png",
       "ownerHash": "9255ec1277ace06ef7aebf6566a04ad2844f9b543a7b06e6b1b0b7fe619d781c",
       "updatedAt": "2026-08-27T14:44:39+08:00"
+    },
+    {
+      "folder": "Js插件",
+      "name": "消息左滑一键引用",
+      "dirName": "消息左滑一键引用",
+      "type": "dir",
+      "path": "资源/Js插件/消息左滑一键引用",
+      "files": [
+        "资源/Js插件/消息左滑一键引用/聊天消息左滑引用.js"
+      ],
+      "images": [
+        "资源/Js插件/消息左滑一键引用/1000306762.jpg"
+      ],
+      "description": "是跟QQ一样的左滑引用，可以自定义引用框的颜色，也可以自定义引用中显示的是角色本名/备注名/固定的“对方”～",
+      "author": "锦时念",
+      "avatar": "",
+      "ownerHash": "8be1404dc48b69dac097ce254c34d80c5a2bc55c62acef7b9d6217419189b554",
+      "updatedAt": "2026-09-08T14:39:21+08:00"
     },
     {
       "folder": "Js插件",
