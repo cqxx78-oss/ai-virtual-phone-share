@@ -1,7 +1,7 @@
 {
   "schema": "ai_phone_share_index",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-09T03:08:16.935Z",
+  "generatedAt": "2026-09-09T03:10:14.186Z",
   "folders": [
     {
       "name": "A 重要须知（自部署版请查看）",
@@ -9,7 +9,7 @@
     },
     {
       "name": "Js插件",
-      "count": 39
+      "count": 40
     },
     {
       "name": "bug反馈专用，请先询问小坊，无法解决后再进行反馈，反馈最好有详细情境、附图，否则无法复现",
@@ -268,6 +268,22 @@
       "avatar": "",
       "ownerHash": "610f4f4de346e85636302c26ece1f8743e84cc7417c5c77618e017ca099b9d06",
       "updatedAt": "2026-08-27T00:38:20+08:00"
+    },
+    {
+      "folder": "Js插件",
+      "name": "侧边滑动回退",
+      "dirName": "侧边滑动回退",
+      "type": "dir",
+      "path": "资源/Js插件/侧边滑动回退",
+      "files": [
+        "资源/Js插件/侧边滑动回退/滑动回退by阿念.js"
+      ],
+      "images": [],
+      "description": "是一个可以通过侧边滑动来实现返回的插件🧩\n这个插件目前做不到从屏幕边缘滑，因为系统原生滑动没办法覆盖，它是最高级的...但是可以稍微留点儿距离开始滑，然后这个距离具体是多少我也在插件那里做了几个选项可自定义选择（）",
+      "author": "锦时念",
+      "avatar": "资源/Js插件/侧边滑动回退/.avatar.png",
+      "ownerHash": "8be1404dc48b69dac097ce254c34d80c5a2bc55c62acef7b9d6217419189b554",
+      "updatedAt": "2026-09-09T11:09:30+08:00"
     },
     {
       "folder": "Js插件",
