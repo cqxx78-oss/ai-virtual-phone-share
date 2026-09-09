@@ -1,7 +1,7 @@
 {
   "schema": "ai_phone_share_index",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-09T03:33:18.819Z",
+  "generatedAt": "2026-09-09T05:05:05.460Z",
   "folders": [
     {
       "name": "A 重要须知（自部署版请查看）",
@@ -65,7 +65,7 @@
     },
     {
       "name": "线上美化",
-      "count": 39
+      "count": 40
     },
     {
       "name": "线上聊天状态栏",
@@ -3983,6 +3983,22 @@
       "avatar": "资源/线上美化/Kakaotalk_by小池/.avatar.png",
       "ownerHash": "6a08d4fbb179025747de726b73fc09d681a2a7d30e74d9d35f57f31a77b70b8d",
       "updatedAt": "2026-09-05T17:51:24+08:00"
+    },
+    {
+      "folder": "线上美化",
+      "name": "[小猫]",
+      "dirName": "[小猫]",
+      "type": "dir",
+      "path": "资源/线上美化/[小猫]",
+      "files": [
+        "资源/线上美化/[小猫]/float│奶蓝芝士by淅沥沥1407301148679688192(1).txt"
+      ],
+      "images": [],
+      "description": "[蝴蝶结]",
+      "author": "淅沥沥",
+      "avatar": "",
+      "ownerHash": "5240203ceacd53bdd6ac551226038a9f60383e01c213daccc1cf872625ca204a",
+      "updatedAt": "2026-09-09T13:04:20+08:00"
     },
     {
       "folder": "线上美化",
