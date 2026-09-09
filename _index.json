@@ -1,7 +1,7 @@
 {
   "schema": "ai_phone_share_index",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-08T23:50:32.800Z",
+  "generatedAt": "2026-09-09T03:08:16.935Z",
   "folders": [
     {
       "name": "A 重要须知（自部署版请查看）",
@@ -9,7 +9,7 @@
     },
     {
       "name": "Js插件",
-      "count": 38
+      "count": 39
     },
     {
       "name": "bug反馈专用，请先询问小坊，无法解决后再进行反馈，反馈最好有详细情境、附图，否则无法复现",
@@ -560,6 +560,22 @@
       "avatar": "",
       "ownerHash": "ae6a9f76a3bd53095a0492578266a36fa1bd28ecfaee0c7c7098bcba3babe02d",
       "updatedAt": "2026-08-20T19:28:22+08:00"
+    },
+    {
+      "folder": "Js插件",
+      "name": "滑动引用聊天消息",
+      "dirName": "滑动引用聊天消息",
+      "type": "dir",
+      "path": "资源/Js插件/滑动引用聊天消息",
+      "files": [
+        "资源/Js插件/滑动引用聊天消息/消息滑动引用by阿念.js"
+      ],
+      "images": [],
+      "description": "1.实现了可自定义边框颜色\n2.可以自定义滑动方向（左/右）\n3.滑动引用后会自动弹出键盘和输入框，省时省力\n4.实现了自定义引用后面的名称，比如角色本名小一，备注小狗，引用称呼选备注就是“引用 小狗：xxxxx”\n5.实现了自动美化跟随，有引用框美化时跟随美化，没有美化时就恢复我写的默认引用框样式",
+      "author": "锦时念",
+      "avatar": "资源/Js插件/滑动引用聊天消息/.avatar.png",
+      "ownerHash": "8be1404dc48b69dac097ce254c34d80c5a2bc55c62acef7b9d6217419189b554",
+      "updatedAt": "2026-09-09T11:07:37+08:00"
     },
     {
       "folder": "Js插件",
