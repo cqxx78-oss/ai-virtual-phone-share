@@ -1,7 +1,7 @@
 {
   "schema": "ai_phone_share_index",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-09T03:31:58.831Z",
+  "generatedAt": "2026-09-09T03:33:18.819Z",
   "folders": [
     {
       "name": "A 重要须知（自部署版请查看）",
@@ -590,7 +590,6 @@
       ],
       "images": [
         "资源/Js插件/滑动引用聊天消息/1000307011.jpg",
-        "资源/Js插件/滑动引用聊天消息/1000307012.jpg",
         "资源/Js插件/滑动引用聊天消息/1000307015.png",
         "资源/Js插件/滑动引用聊天消息/1000307017.png"
       ],
@@ -598,7 +597,7 @@
       "author": "锦时念",
       "avatar": "资源/Js插件/滑动引用聊天消息/.avatar.png",
       "ownerHash": "8be1404dc48b69dac097ce254c34d80c5a2bc55c62acef7b9d6217419189b554",
-      "updatedAt": "2026-09-09T11:11:21+08:00"
+      "updatedAt": "2026-09-09T11:32:37+08:00"
     },
     {
       "folder": "Js插件",
